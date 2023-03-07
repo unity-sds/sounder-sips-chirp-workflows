@@ -1,0 +1,21 @@
+input_processing_labels: ["lable1","label2"]
+
+# For CMR Search Step
+input_cmr_collection_name: "CHIRPDATA"
+input_cmr_search_start_time: "2021-02-01T00:00:00Z"
+input_cmr_search_stop_time: "2021-03-01T00:00:00Z"
+
+
+
+#for chirp rebinning step
+# none -
+
+# For unity data upload step, unity catalog
+output_collection_id: "CHIRP_OUTPUT_COLLECTION"
+output_data_bucket: "s3://unity-data-bucket"
+
+
+
+# For DAAC CNM step
+input_daac_collection_shortname: "CHIRP_L1B"
+input_daac_collection_sns: "arn:://SNS-arn"

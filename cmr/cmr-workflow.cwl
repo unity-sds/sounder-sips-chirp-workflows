@@ -14,16 +14,15 @@ inputs:
   cmr_collection : string
   cmr_start_time: string
   cmr_stop_time: string
-  cmr_edl_user: string
-  cmr_edl_pass: string
+  cmr_edl_user: string?
+  cmr_edl_pass: string?
 
 outputs:
   results:
-    outputSource: cmr-search/results
     type: File
+    outputSource: cmr-search/cmr_results
 
 steps:
-  run:
     cmr-search:
       run: "cmr-tool.cwl"
       in:
@@ -33,5 +32,4 @@ steps:
         cmr_edl_user: cmr_edl_user
         cmr_edl_pass: cmr_edl_user
       # this is a stac catalog pointing to the CMR STAC as an item
-      out:
-        - results
+      out: [cmr_results]
