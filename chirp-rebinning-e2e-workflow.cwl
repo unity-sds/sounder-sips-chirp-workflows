@@ -54,15 +54,11 @@ steps:
     # run: https://raw.githubusercontent.com/unity-sds/sounder-sips-application/main/cwl/l1b_workflow.cwl
     run: rebinning-app-package/rebinning-workflow.cwl
     in:
-        input_filename:
-          source: parameters
-          valueFrom: cmr-step/results
-          # source: parameters
-          # valueFrom: cmr-step/results
-        line_offset:
-          valueFrom: ${0.0}
-          # source: parameters
-          # valueFrom: 0.0
+        parameters:
+          input_filename:
+            source: cmr-step/results
+          line_offset:
+            valueFrom: ${0.0}
         stage_out: output_data_bucket
     out: []
   #
