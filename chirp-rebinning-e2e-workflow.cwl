@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: Workflow
 label: Workflow that executes the Sounder SIPS end-to-end chirp rebinngin workflow
 
@@ -34,6 +34,77 @@ inputs:
   input_daac_collection_shortname: string
   input_daac_collection_sns: string
 
+  parameters:
+      - 'null'
+      - type: record
+        name: parameters
+        fields:
+          input_filename:
+            type:
+            - fields:
+                aws_access_key_id: string
+                aws_secret_access_key: string
+                aws_session_token: string?
+                region_name: string?
+                s3_url:
+                  type:
+                  - string
+                  - string[]
+              name: S3
+              type: record
+            - fields:
+                password: string
+                url:
+                  type:
+                  - string
+                  - string[]
+                username: string
+              name: DAAC
+              type: record
+            - fields:
+                collection_id: string
+                granule_name: string
+                maap_pgt: string
+              name: MAAP
+              type: record
+            - fields:
+                maap_pgt: string
+                url:
+                  type:
+                  - string
+                  - string[]
+              name: MAAP_HTTP
+              type: record
+            - fields:
+                role_arn: string
+                source_profile: string
+              name: Role
+              type: record
+            - fields:
+                path:
+                  type:
+                  - File
+                  - File[]
+              name: Local
+              type: record
+            - fields:
+                url:
+                  type:
+                  - string
+                  - string[]
+              name: HTTP
+              type: record
+            - fields:
+                s3_url:
+                  type:
+                  - string
+                  - string[]
+              name: S3_unsigned
+              type: record
+          line_offset: float
+
+
+
 
 outputs: []
 # none?
@@ -54,12 +125,23 @@ steps:
     # run: https://raw.githubusercontent.com/unity-sds/sounder-sips-application/main/cwl/l1b_workflow.cwl
     run: rebinning-app-package/rebinning-workflow.cwl
     in:
-        parameters:
-          input_filename:
-            source: cmr-step/results
-          line_offset:
-            valueFrom: ${0.0}
-        stage_out: output_data_bucket
+      parameters:
+        source: [cmr-step/results]
+        valueFrom: |
+          ${
+              return {
+                input_filename: {s3_url: self['location']},
+                line_offset: 0,
+              };
+          }
+      stage_out:
+        source: [cmr-step/results]
+        valueFrom: |
+          ${
+              return {
+                s3_url: "blah"
+              };
+          }
     out: []
   #
   # unity-data-upload:
