@@ -11,6 +11,8 @@ requirements:
   ScatterFeatureRequirement: {}
   InlineJavascriptRequirement: {}
   StepInputExpressionRequirement: {}
+  MultipleInputFeatureRequirement: {}
+
 
 ## Inputs to the e2e rebinning, not to each applicaiton within the workflow
 inputs:
@@ -64,11 +66,11 @@ steps:
               };
           }
       stage_out:
-        source: [cmr-step/results]
+        source: [output_data_bucket, output_collection_id ]
         valueFrom: |
           ${
               return {
-                s3_url: "blah"
+                s3_url: self[0] + "/" + self[1]
               };
           }
     out: []
