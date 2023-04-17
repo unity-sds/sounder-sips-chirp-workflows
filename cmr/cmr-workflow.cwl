@@ -14,6 +14,7 @@ inputs:
   cmr_collection : string
   cmr_start_time: string
   cmr_stop_time: string
+  limits: string?
   cmr_edl_user: string?
   cmr_edl_pass: string?
 
@@ -29,6 +30,7 @@ steps:
         cmr_collection: cmr_collection
         cmr_start_time: cmr_start_time
         cmr_stop_time: cmr_stop_time
+        limits: limits
         cmr_edl_user: cmr_edl_user
         cmr_edl_pass: cmr_edl_user
       # this is a stac catalog pointing to the CMR STAC as an item
