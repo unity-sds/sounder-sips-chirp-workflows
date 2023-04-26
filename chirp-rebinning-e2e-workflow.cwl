@@ -51,10 +51,9 @@ steps:
       # cmr_edl_user: "null"
       # cmr_edl_pass: "null"
     out: [results]
-
   chirp-rebinning:
     # run: https://raw.githubusercontent.com/unity-sds/sounder-sips-application/main/cwl/l1b_workflow.cwl
-    run: rebinning-app-package/rebinning-workflow.cwl
+    run: rebinning-app-package-proxy/rebinning-workflow.cwl
     in:
       parameters:
         source: [cmr-step/results]
@@ -73,27 +72,13 @@ steps:
                 s3_url: self[0] + "/" + self[1]
               };
           }
-    out: []
-  #
-  # unity-data-upload:
-  #   run: unity_upload.cwl
-  #   in:
-  #     files: chirp-rebinning/output_files
-  #     collection: output_collection_id
-  #     bucket: output_data_bucket
-  #   out:
-  #     output-stac
-  #
-  # data-catalog:
-  #   run: dapa_catalog.cwl
-  #   in:
-  #     collection: output_collection_id
-  #     bucket: output_data_bucket
-  #     data: unity-data-upload/output-stac
-  #     labels: input_processing_labels
-  #   out:
-  #   - stdout_file
-  #   - stderr_file
+    out: [results]
+  data-catalog:
+    run: catalog/catalog-workflow.cwl
+    in:
+      uds_collection: output_collection_id
+      stac: chirp-rebinning/results
+    out: [results]
   #
   # daac-notification:
   #   run: daac_notify.cwl

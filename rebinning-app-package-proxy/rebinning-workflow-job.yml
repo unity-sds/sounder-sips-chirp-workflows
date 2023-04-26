@@ -1,0 +1,8 @@
+output_directory: "/tmp"
+parameters:
+  input_filename:
+    s3_url: ../cmr/cmr-results.json
+  line_offset: 0.0
+stage_out:
+  # output_directory: "./"
+  s3_url: "s3://my_bucket"

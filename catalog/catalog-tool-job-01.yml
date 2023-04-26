@@ -1,0 +1,8 @@
+input_processing_labels: ["lable1","label2"]
+
+# For CMR Search Step
+uds_collection: "C2011289787-GES_DISC"
+stac:
+  class: File
+  path: stac.json
+#cmr_edl_user: None

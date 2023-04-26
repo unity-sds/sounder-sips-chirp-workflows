@@ -1,0 +1,20 @@
+{
+"type": "FeatureCollection",
+"stac_version": "1.0.0",
+"numberMatched": 17021,
+"numberReturned": 10,
+"features": [
+  {
+    "stac_version": "1.0.0",
+    "type": "Feature",
+    "id": "20201211_223832_CS2",
+    "bbox": [],
+    "geometry": {},
+    "properties": {},
+    "collection": "simple-collection",
+    "links": [],
+    "assets": {}
+  }
+],
+"links":[]
+}
