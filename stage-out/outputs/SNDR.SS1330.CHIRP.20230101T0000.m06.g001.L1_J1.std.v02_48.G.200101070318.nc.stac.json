@@ -1,0 +1,38 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0",
+  "id": "NA",
+  "properties": {
+    "start_datetime": "2023-01-01T00:00:00.000000Z",
+    "end_datetime": "2023-01-01T00:06:00.000000Z",
+    "created": "2020-01-01T07:03:18.000Z",
+    "updated": "2020-01-01T07:03:18.000Z",
+    "datetime": "2020-01-01T07:03:18.000Z"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      0,
+      0
+    ]
+  },
+  "links": [],
+  "assets": {
+    "data": {
+      "href": "/tmp/outputs/SNDR.SS1330.CHIRP.20230101T0000.m06.g001.L1_J1.std.v02_48.G.200101070318.nc",
+      "title": "main data"
+    },
+    "metadata__stac": {
+      "href": "/tmp/outputs/SNDR.SS1330.CHIRP.20230101T0000.m06.g001.L1_J1.std.v02_48.G.200101070318.nc.stac.json",
+      "title": "metadata stac"
+    }
+  },
+  "bbox": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "stac_extensions": [],
+  "collection": "NA"
+}
