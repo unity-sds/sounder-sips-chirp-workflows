@@ -5,7 +5,7 @@ unity_username: "base64encodedusername"
 unity_password: "base64encodedpassword"
 unity_client_id: "71g0c73jl77gsqhtlfg2ht388c"
 unity_dapa_api: "https://1gp9st60gd.execute-api.us-west-2.amazonaws.com/dev/"
-collection_id: "urn:nasa:unity:uds_local_test:DEV1:SNDR13CHRP1___2"
+collection_id: "urn:nasa:unity:uds_local_test:DEV1:CHRP_16_DAY_REBIN___1"
 staging_bucket: "uds-dev-cumulus-sps"
 catalog_file:
   class: File
