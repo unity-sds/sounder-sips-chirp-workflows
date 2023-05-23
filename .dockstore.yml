@@ -1,0 +1,9 @@
+version: 1.2
+workflows:
+  - name: "sounder_sips_chirp"
+    subclass: CWL
+    publish: true
+    primaryDescriptorPath: /chirp-rebinning-e2e-workflow.cwl
+    authors:
+      - name: "Mike Gangl"
+        email: "michael.e.gangl@jpl.nasa.gov"

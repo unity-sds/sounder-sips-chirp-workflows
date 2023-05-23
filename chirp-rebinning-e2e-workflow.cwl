@@ -37,8 +37,10 @@ inputs:
   input_daac_collection_sns: string
 
 
-outputs: []
-# none?
+outputs: 
+  results: 
+    type: File
+    outputSource: data-catalog/results
 
 steps:
   cmr-step:
