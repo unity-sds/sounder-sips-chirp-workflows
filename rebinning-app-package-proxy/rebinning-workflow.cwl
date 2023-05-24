@@ -4,6 +4,12 @@ $namespaces:
 class: Workflow
 cwlVersion: v1.2
 inputs:
+  download_dir: string
+  download_type: string
+  edl_username: string
+  edl_password: string
+  stac_json: File
+  stage_in_output_file: string
   cache_dir: Directory?
   cache_only:
     default: false
@@ -104,18 +110,19 @@ outputs:
     outputSource: process/results
 requirements:
   StepInputExpressionRequirement: {}
+  NetworkAccess:
+    networkAccess: true
 steps:
-  # stage_in_input_filename:
-  #   in:
-  #     cache_dir: cache_dir
-  #     cache_only: cache_only
-  #     input_path:
-  #       source: parameters
-  #       valueFrom: $(self.input_filename)
-  #   out:
-  #   - cache_out
-  #   - output_files
-  #   run: stage_in.cwl
+  stage_in:
+    in:
+      stac_json: stac_json
+      download_dir: download_dir
+      download_type: download_type
+      edl_username: edl_username
+      edl_password: edl_password
+      output_file: stage_in_output_file
+    out: [stage_in_results, download_dir]
+    run: ../stage-in/stage-in.cwl
   process:
     in:
       files:
