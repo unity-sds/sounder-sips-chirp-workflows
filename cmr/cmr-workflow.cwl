@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: Workflow
 label: Workflow that executes the Sounder SIPS end-to-end chirp rebinngin workflow
 
@@ -8,6 +8,8 @@ $namespaces:
 
 requirements:
   SubworkflowFeatureRequirement: {}
+  NetworkAccess:
+    networkAccess: true
 
 ## Inputs to the e2e rebinning, not to each applicaiton within the workflow
 inputs:
@@ -17,6 +19,7 @@ inputs:
   limits: string?
   cmr_edl_user: string?
   cmr_edl_pass: string?
+  output_file: string
 
 outputs:
   results:
@@ -33,5 +36,6 @@ steps:
         limits: limits
         cmr_edl_user: cmr_edl_user
         cmr_edl_pass: cmr_edl_user
+        output_file: output_file
       # this is a stac catalog pointing to the CMR STAC as an item
       out: [cmr_results]
