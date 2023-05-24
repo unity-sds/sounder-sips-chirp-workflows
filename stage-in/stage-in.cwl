@@ -3,11 +3,9 @@ class: CommandLineTool
 
 baseCommand: ["DOWNLOAD"]
 
-stdout: stage-in-results.json
-
 requirements:
   DockerRequirement:
-    dockerPull: ghcr.io/unity-sds/unity-data-services:3.6.1
+    dockerPull: ghcr.io/unity-sds/unity-data-services:3.8.1
   EnvVarRequirement:
     envDef:
       DOWNLOAD_DIR: $(runtime.outdir)/$(inputs.download_dir)
@@ -17,6 +15,8 @@ requirements:
       EDL_USERNAME: $(inputs.edl_username)
       EDL_PASSWORD: $(inputs.edl_password)
       EDL_PASSWORD_TYPE: 'BASE64'
+      LOG_LEVEL: '20'
+      OUTPUT_FILE: $(runtime.outdir)/$(inputs.output_file)
 
 inputs:
   download_dir:
@@ -29,10 +29,14 @@ inputs:
     type: string
   edl_password:
     type: string
+  output_file:
+    type: string
 
 outputs:
   stage_in_results:
-    type: stdout
+    type: File
+    outputBinding:
+      glob: "$(runtime.outdir)/$(inputs.output_file)"
   download_dir:
     type: Directory
     outputBinding:

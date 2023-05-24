@@ -5,3 +5,4 @@ edl_password: "base64encodedpassword"
 stac_json:
   class: File
   path: cmr-results.json
+output_file: "stage-in-results.json"

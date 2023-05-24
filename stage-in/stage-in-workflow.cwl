@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: Workflow
 label: Workflow that executes the Sounder SIPS end-to-end chirp rebinngin workflow
 
@@ -10,6 +10,8 @@ requirements:
   SubworkflowFeatureRequirement: {}
   StepInputExpressionRequirement: {}
   InlineJavascriptRequirement: {}
+  NetworkAccess:
+    networkAccess: true
 
 inputs:
   download_dir: string
@@ -17,6 +19,7 @@ inputs:
   edl_username: string
   edl_password: string
   stac_json: File
+  output_file: string
 
 outputs:
   stage_in_results:
@@ -35,4 +38,5 @@ steps:
         download_type: download_type
         edl_username: edl_username
         edl_password: edl_password
+        output_file: output_file
       out: [stage_in_results, download_dir]
