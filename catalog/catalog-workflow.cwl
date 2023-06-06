@@ -23,7 +23,7 @@ inputs:
 outputs:
   results:
     type: File
-    outputSource: catalog/results
+    outputSource: catalog/catalog_results
 
 steps:
     catalog:
@@ -34,4 +34,4 @@ steps:
         unity_client_id: unity_client_id
         unity_dapa_api: unity_dapa_api
         uploaded_files_json: uploaded_files_json
-      out: [results]
+      out: [catalog_results]
