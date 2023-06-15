@@ -19,7 +19,6 @@ inputs:
   edl_username: string
   edl_password: string
   stac_json: File
-  output_file: string
 
 outputs:
   stage_in_results:
@@ -38,5 +37,4 @@ steps:
         download_type: download_type
         edl_username: edl_username
         edl_password: edl_password
-        output_file: output_file
       out: [stage_in_results, download_dir]

@@ -7,7 +7,7 @@ baseCommand: ["SEARCH"]
 requirements:
   InlineJavascriptRequirement: {}
   DockerRequirement:
-    dockerPull: ghcr.io/unity-sds/unity-data-services:3.8.1
+    dockerPull: ghcr.io/unity-sds/unity-data-services:4.0.0
   EnvVarRequirement:
     envDef:
       GRANULES_SEARCH_DOMAIN: 'CMR'
@@ -16,7 +16,6 @@ requirements:
       LIMITS: $(inputs.limits || '-1')
       DATE_FROM: $(inputs.cmr_start_time)
       DATE_TO: $(inputs.cmr_stop_time)
-      FILTER_ONLY_ASSETS: 'TRUE'
       OUTPUT_FILE: $(runtime.outdir)/$(inputs.output_file)
 
 inputs:
