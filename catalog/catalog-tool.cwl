@@ -7,7 +7,7 @@ stdout: catalog-results.json
 
 requirements:
   DockerRequirement:
-    dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.0
+    dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.1
   EnvVarRequirement:
     envDef:
       USERNAME: $(inputs.unity_username)
