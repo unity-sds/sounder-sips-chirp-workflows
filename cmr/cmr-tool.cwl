@@ -7,7 +7,7 @@ baseCommand: ["SEARCH"]
 requirements:
   InlineJavascriptRequirement: {}
   DockerRequirement:
-    dockerPull: ghcr.io/unity-sds/unity-data-services:4.0.0
+    dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.1
   EnvVarRequirement:
     envDef:
       GRANULES_SEARCH_DOMAIN: 'CMR'
@@ -16,7 +16,7 @@ requirements:
       LIMITS: $(inputs.limits || '-1')
       DATE_FROM: $(inputs.cmr_start_time)
       DATE_TO: $(inputs.cmr_stop_time)
-      OUTPUT_FILE: $(runtime.outdir)/$(inputs.output_file)
+      OUTPUT_FILE: $(runtime.outdir)/cmr-results.json
 
 inputs:
   cmr_collection:
@@ -31,12 +31,10 @@ inputs:
     type: string?
   limits:
     type: string?
-  output_file:
-    type: string
 
 #stac json catalog are the outputs
 outputs:
   cmr_results:
     type: File
     outputBinding:
-      glob: "$(runtime.outdir)/$(inputs.output_file)"
+      glob: "$(runtime.outdir)/cmr-results.json"

@@ -19,7 +19,6 @@ inputs:
   limits: string?
   cmr_edl_user: string?
   cmr_edl_pass: string?
-  output_file: string
 
 outputs:
   results:
@@ -36,6 +35,5 @@ steps:
         limits: limits
         cmr_edl_user: cmr_edl_user
         cmr_edl_pass: cmr_edl_user
-        output_file: output_file
       # this is a stac catalog pointing to the CMR STAC as an item
       out: [cmr_results]
