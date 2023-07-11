@@ -1,0 +1,24 @@
+{
+  "type": "Catalog",
+  "id": "NA",
+  "stac_version": "1.0.0",
+  "description": "NA",
+  "links": [
+    {
+      "rel": "root",
+      "href": "/tmp/outputs/catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "/tmp/outputs/SNDR.SS1330.CHIRP.20230101T0000.m06.g001.L1_J1.std.v02_48.G.200101070318_REBIN.nc.stac.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "/tmp/outputs/SNDR.SS1330.CHIRP.20230101T0006.m06.g002.L1_J1.std.v02_48.G.200101070318_REBIN.nc.stac.json",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": []
+}

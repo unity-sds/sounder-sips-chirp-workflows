@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: Workflow
 label: Workflow that executes the Sounder SIPS end-to-end chirp rebinngin workflow
 
@@ -8,26 +8,30 @@ $namespaces:
 
 requirements:
   SubworkflowFeatureRequirement: {}
+  NetworkAccess:
+    networkAccess: true
 
-## Inputs to the e2e rebinning, not to each applicaiton within the workflow
 inputs:
-  # the UDS colleciton to which the files are going to be cataloged
-  uds_collection : string
-  # The stac outputs that defines the files that are to be cataloged
-  stac: File
+  unity_username: string
+  unity_password: string
+  unity_client_id: string
+  unity_dapa_api: string
+  uploaded_files_json: File
 
 
 # Outputs are the catalog STAC or url to the dapa search that returns the files just uploaded
 outputs:
   results:
     type: File
-    outputSource: catalog/results
+    outputSource: catalog/catalog_results
 
 steps:
     catalog:
       run: "catalog-tool.cwl"
       in:
-        uds_collection: uds_collection
-        files: stac
-      # this is a stac catalog pointing to the CMR STAC as an item
-      out: [results]
+        unity_username: unity_username
+        unity_password: unity_password
+        unity_client_id: unity_client_id
+        unity_dapa_api: unity_dapa_api
+        uploaded_files_json: uploaded_files_json
+      out: [catalog_results]

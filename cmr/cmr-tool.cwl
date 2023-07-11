@@ -4,12 +4,10 @@ class: CommandLineTool
 # results in a STAC file called "cmr-results.json" being created with result of a CMR query
 baseCommand: ["SEARCH"]
 
-stdout: cmr-results.json
-
 requirements:
   InlineJavascriptRequirement: {}
   DockerRequirement:
-    dockerPull: ghcr.io/unity-sds/unity-data-services:3.3.1
+    dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.1
   EnvVarRequirement:
     envDef:
       GRANULES_SEARCH_DOMAIN: 'CMR'
@@ -18,7 +16,7 @@ requirements:
       LIMITS: $(inputs.limits || '-1')
       DATE_FROM: $(inputs.cmr_start_time)
       DATE_TO: $(inputs.cmr_stop_time)
-      FILTER_ONLY_ASSETS: 'TRUE'
+      OUTPUT_FILE: $(runtime.outdir)/cmr-results.json
 
 inputs:
   cmr_collection:
@@ -37,4 +35,6 @@ inputs:
 #stac json catalog are the outputs
 outputs:
   cmr_results:
-    type: stdout
+    type: File
+    outputBinding:
+      glob: "$(runtime.outdir)/cmr-results.json"

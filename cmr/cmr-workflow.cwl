@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: Workflow
 label: Workflow that executes the Sounder SIPS end-to-end chirp rebinngin workflow
 
@@ -8,6 +8,8 @@ $namespaces:
 
 requirements:
   SubworkflowFeatureRequirement: {}
+  NetworkAccess:
+    networkAccess: true
 
 ## Inputs to the e2e rebinning, not to each applicaiton within the workflow
 inputs:
