@@ -17,7 +17,8 @@
          "inputs":[
             {
                "id":"input_processing_labels",
-               "title":"Workflow execution specific processing labels",
+               "abstract":"Workflow execution specific processing labels",
+               "title": "Execution Labels",
                "formats":[
                   {
                      "mimeType":"text",
@@ -29,7 +30,8 @@
             },
          	{
                "id":"input_cmr_collection_name",
-               "title":"CMR Collection (UMM-C collection identifier) for input data.",
+               "abstract":"CMR Collection (UMM-C collection identifier) for input data.",
+               "title": "CMR Collection Concept ID",
                "formats":[
                   {
                      "mimeType":"text",
@@ -39,7 +41,8 @@
             },
             {
                "id":"input_cmr_search_start_time",
-               "title":"Start time of 16 day period",
+               "abstract":"Start time of 16 day period",
+               "title": "CMR Data Search Start Time",
                "formats":[
                   {
                      "mimeType":"text",
@@ -49,7 +52,8 @@
             },
             {
                "id":"input_cmr_search_stop_time",
-               "title":"Stop time of the 16 day period",
+               "abstract":"Stop time of the 16 day period",
+               "title": "CMR Data Search End Time",
                "formats":[
                   {
                      "mimeType":"text",
@@ -59,7 +63,8 @@
             },
             {
             	"id": "output_collection_id",
-            	"title": "Unity Collection ID for output data products",
+            	"abstract": "Unity Collection ID for output data products",
+                "title": "Output Unity Collection",
             	"formats":[
                   {
                      "mimeType":"text",
@@ -69,7 +74,8 @@
             },
             {
             	"id": "output_data_bucket",
-            	"title": "Unity S3 bucket for product outputs",
+                "title": "Output Unity Bucket",
+            	"abstract": "Unity S3 bucket for product outputs",
             	"formats":[
                   {
                      "mimeType":"text",
@@ -81,7 +87,8 @@
          "outputs":[
             {
                "id":"output",
-               "title":"Output STAC catalog of generated products",
+               "title": "Output Data",
+               "abstract":"Output STAC catalog of generated products",
                "formats":[
                   {
                      "mimeType":"application/json",
