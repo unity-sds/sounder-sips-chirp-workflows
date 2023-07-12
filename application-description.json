@@ -1,0 +1,116 @@
+{
+   "processDescription":{
+      "process":{
+         "id":"chirp-rebinning-cwl",
+         "title":"Chirp Rebinning Workflow",
+         "owsContext":{
+            "offering":{
+               "code":"http://www.opengis.net/eoc/applicationContext/cwl",
+               "content":{
+                  "href":"https://raw.githubusercontent.com/unity-sds/sounder-sips-chirp-workflows/main/chirp-rebinning-e2e-workflow.cwl"
+               }
+            }
+         },
+         "abstract":"chirp-rebinning-cwl",
+         "keywords":[
+         ],
+         "inputs":[
+            {
+               "id":"input_processing_labels",
+               "abstract":"Workflow execution specific processing labels",
+               "title": "Execution Labels",
+               "formats":[
+                  {
+                     "mimeType":"text",
+                     "default":true
+                  }
+               ],
+               "minOccurs": 0,
+               "maxOccurs": 10
+            },
+         	{
+               "id":"input_cmr_collection_name",
+               "abstract":"CMR Collection (UMM-C collection identifier) for input data.",
+               "title": "CMR Collection Concept ID",
+               "formats":[
+                  {
+                     "mimeType":"text",
+                     "default":true
+                  }
+               ]
+            },
+            {
+               "id":"input_cmr_search_start_time",
+               "abstract":"Start time of 16 day period",
+               "title": "CMR Data Search Start Time",
+               "formats":[
+                  {
+                     "mimeType":"text",
+                     "default":true
+                  }
+               ]
+            },
+            {
+               "id":"input_cmr_search_stop_time",
+               "abstract":"Stop time of the 16 day period",
+               "title": "CMR Data Search End Time",
+               "formats":[
+                  {
+                     "mimeType":"text",
+                     "default":true
+                  }
+               ]
+            },
+            {
+            	"id": "output_collection_id",
+            	"abstract": "Unity Collection ID for output data products",
+                "title": "Output Unity Collection",
+            	"formats":[
+                  {
+                     "mimeType":"text",
+                     "default":true
+                  }
+               ]
+            },
+            {
+            	"id": "output_data_bucket",
+                "title": "Output Unity Bucket",
+            	"abstract": "Unity S3 bucket for product outputs",
+            	"formats":[
+                  {
+                     "mimeType":"text",
+                     "default":true
+                  }
+               ]
+            }
+         ],
+         "outputs":[
+            {
+               "id":"output",
+               "title": "Output Data",
+               "abstract":"Output STAC catalog of generated products",
+               "formats":[
+                  {
+                     "mimeType":"application/json",
+                     "default":true
+                  }
+               ]
+            }
+         ]
+      },
+      "processVersion":"develop",
+      "jobControlOptions":[
+         "async-execute"
+      ],
+      "outputTransmission":[
+         "reference"
+      ]
+   },
+   "immediateDeployment":true,
+   "executionUnit":[
+      {
+         "href":"docker.registry/ndvims:latest"
+      }
+   ],
+   "deploymentProfileName":"http://www.opengis.net/profiles/eoc/dockerizedApplication"
+}
