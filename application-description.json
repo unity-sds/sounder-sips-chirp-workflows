@@ -2,7 +2,7 @@
    "processDescription":{
       "process":{
          "id":"chirp-rebinning-cwl",
-         "title":"chirp-rebinning-cwl",
+         "title":"Chirp Rebinning Workflow",
          "owsContext":{
             "offering":{
                "code":"http://www.opengis.net/eoc/applicationContext/cwl",
@@ -17,7 +17,7 @@
          "inputs":[
             {
                "id":"input_processing_labels",
-               "title":"input_processing_labels",
+               "title":"Workflow execution specific processing labels",
                "formats":[
                   {
                      "mimeType":"text",
@@ -29,7 +29,7 @@
             },
          	{
                "id":"input_cmr_collection_name",
-               "title":"input_cmr_collection_name",
+               "title":"CMR Collection (UMM-C collection identifier) for input data.",
                "formats":[
                   {
                      "mimeType":"text",
@@ -39,7 +39,7 @@
             },
             {
                "id":"input_cmr_search_start_time",
-               "title":"input_cmr_search_start_time",
+               "title":"Start time of 16 day period",
                "formats":[
                   {
                      "mimeType":"text",
@@ -49,7 +49,7 @@
             },
             {
                "id":"input_cmr_search_stop_time",
-               "title":"input_cmr_search_stop_time",
+               "title":"Stop time of the 16 day period",
                "formats":[
                   {
                      "mimeType":"text",
@@ -59,7 +59,7 @@
             },
             {
             	"id": "output_collection_id",
-            	"title": "output_collection_id",
+            	"title": "Unity Collection ID for output data products",
             	"formats":[
                   {
                      "mimeType":"text",
@@ -69,7 +69,7 @@
             },
             {
             	"id": "output_data_bucket",
-            	"title": "output_data_bucket",
+            	"title": "Unity S3 bucket for product outputs",
             	"formats":[
                   {
                      "mimeType":"text",
@@ -81,7 +81,7 @@
          "outputs":[
             {
                "id":"output",
-               "title":"chirp-processing-results",
+               "title":"Output STAC catalog of generated products",
                "formats":[
                   {
                      "mimeType":"application/json",
