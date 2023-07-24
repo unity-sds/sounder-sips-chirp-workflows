@@ -19,11 +19,11 @@
   "links": [],
   "assets": {
     "data": {
-      "href": "/tmp/outputs/SNDR.SS1330.CHIRP.20230101T0000.m06.g001.L1_J1.std.v02_48.G.200101070318_REBIN.nc",
+      "href": "./SNDR.SS1330.CHIRP.20230101T0000.m06.g001.L1_J1.std.v02_48.G.200101070318_REBIN.nc",
       "title": "main data"
     },
     "metadata__stac": {
-      "href": "/tmp/outputs/SNDR.SS1330.CHIRP.20230101T0000.m06.g001.L1_J1.std.v02_48.G.200101070318_REBIN.nc.stac.json",
+      "href": "./SNDR.SS1330.CHIRP.20230101T0000.m06.g001.L1_J1.std.v02_48.G.200101070318_REBIN.nc.stac.json",
       "title": "metadata stac"
     }
   },
