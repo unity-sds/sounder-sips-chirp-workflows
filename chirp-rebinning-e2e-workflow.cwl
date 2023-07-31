@@ -44,7 +44,7 @@ outputs:
 
 steps:
   cmr-step:
-    run: cmr/cmr-workflow.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcmr-trial/versions/1/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
       cmr_collection : input_cmr_collection_name
       cmr_start_time: input_cmr_search_start_time
@@ -55,15 +55,23 @@ steps:
     out: [results]
   chirp-rebinning:
     # run: https://raw.githubusercontent.com/unity-sds/sounder-sips-application/main/cwl/l1b_workflow.cwl
-    run: rebinning-app-package-proxy/rebinning-workflow.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmcduffie%2Fchirp-rebinning-app-package/versions/1/PLAIN-CWL/descriptor/%2Fworkflow.cwl
     in:
-      parameters:
+      stage_in:
         source: [cmr-step/results]
         valueFrom: |
           ${
               return {
-                input_filename: {s3_url: self['location']},
-                line_offset: 0,
+                download_type: 'DAAC',
+                stac_json: self,
+              };
+          }
+      parameters:
+        source: [output_collection_id]
+        valueFrom: |
+          ${
+              return {
+                output_collection: self
               };
           }
       stage_out:
@@ -76,16 +84,16 @@ steps:
           }
     out: [results]
   data-catalog:
-    run: catalog/catalog-workflow.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/1/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
-      uds_collection: output_collection_id
-      stac: chirp-rebinning/results
+      unity_username:
+        valueFrom: "base64encodedusername"
+      unity_password:
+        valueFrom: "base64encodedpassword"
+      unity_client_id:
+        valueFrom: "71g0c73jl77gsqhtlfg2ht388c"
+      unity_dapa_api:
+        valueFrom: "https://1gp9st60gd.execute-api.us-west-2.amazonaws.com/dev/"
+      uploaded_files_json: chirp-rebinning/results
     out: [results]
-  #
-  # daac-notification:
-  #   run: daac_notify.cwl
-  #   in:
-  #     daac_collection: input_daac_collection_shortname
-  #     daac_sns: input_daac_collection_sns
-  #     data: unity-data-upload/output-stac
-  #   out: []
+
