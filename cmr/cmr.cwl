@@ -29,7 +29,7 @@ $graph:
 
     steps:
         cmr-search:
-          run: "cmr-tool.cwl"
+          run: "#cmr-tool"
           in:
             cmr_collection: cmr_collection
             cmr_start_time: cmr_start_time
