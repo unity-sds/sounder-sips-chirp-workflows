@@ -10,9 +10,14 @@ requirements:
     dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.1
   EnvVarRequirement:
     envDef:
+      AWS_REGION: $(inputs.aws_region)
+      AWS_ACCESS_KEY_ID: $(inputs.aws_access_key_id)
+      AWS_SECRET_ACCESS_KEY: $(inputs.aws_secret_access_key)
+      AWS_SESSION_TOKEN: $(inputs.aws_session_token)
+
       USERNAME: $(inputs.unity_username)
       PASSWORD: $(inputs.unity_password)
-      PASSWORD_TYPE: 'BASE64'
+      PASSWORD_TYPE: 'PARAM_STORE'
 
       CLIENT_ID: $(inputs.unity_client_id)
       COGNITO_URL: $(inputs.unity_cognito_url)
