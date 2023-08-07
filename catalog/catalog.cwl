@@ -15,6 +15,7 @@ $graph:
     inputs:
       unity_username: string
       unity_password: string
+      password_type: string
       unity_client_id: string
       unity_dapa_api: string
       uploaded_files_json: File
@@ -32,6 +33,7 @@ $graph:
           in:
             unity_username: unity_username
             unity_password: unity_password
+            password_type: password_type
             unity_client_id: unity_client_id
             unity_dapa_api: unity_dapa_api
             uploaded_files_json: uploaded_files_json
@@ -49,7 +51,7 @@ $graph:
         envDef:
           USERNAME: $(inputs.unity_username)
           PASSWORD: $(inputs.unity_password)
-          PASSWORD_TYPE: 'BASE64'
+          PASSWORD_TYPE: $(inputs.password_type)
 
           CLIENT_ID: $(inputs.unity_client_id)
           COGNITO_URL: $(inputs.unity_cognito_url)
@@ -63,6 +65,8 @@ $graph:
       unity_username:
         type: string
       unity_password:
+        type: string
+      password_type:
         type: string
       unity_client_id:
         type: string

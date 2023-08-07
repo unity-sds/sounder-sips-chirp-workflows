@@ -67,9 +67,9 @@ steps:
               return {
                 download_type: 'DAAC',
                 stac_json: self,
-                edl_password: '',
-                edl_username: '',
-                edl_password_type: ''
+                edl_password: '/sps/processing/workflows/edl_password',
+                edl_username: '/sps/processing/workflows/edl_username',
+                edl_password_type: 'PARAM_STORE'
               };
           }
       #input configuration for process
@@ -98,12 +98,15 @@ steps:
           }
     out: [stage_out_results]
   data-catalog:
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/1/PLAIN-CWL/descriptor/%2FDockstore.cwl
+    #run: catalog/catalog.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/2/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
       unity_username:
-        valueFrom: "base64encodedusername"
+        valueFrom: "/sps/processing/workflows/unity_username"
       unity_password:
-        valueFrom: "base64encodedpassword"
+        valueFrom: "/sps/processing/workflows/unity_password"
+      password_type:
+        valueFrom: "PARAM_STORE"
       unity_client_id:
         valueFrom: "71g0c73jl77gsqhtlfg2ht388c"
       unity_dapa_api:
