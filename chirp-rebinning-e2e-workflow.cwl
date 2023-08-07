@@ -44,7 +44,7 @@ outputs:
 
 steps:
   cmr-step:
-    run: cmr/cmr-workflow.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcmr-trial/versions/1/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
       cmr_collection : input_cmr_collection_name
       cmr_start_time: input_cmr_search_start_time
@@ -54,38 +54,63 @@ steps:
       # cmr_edl_pass: "null"
     out: [results]
   chirp-rebinning:
-    # run: https://raw.githubusercontent.com/unity-sds/sounder-sips-application/main/cwl/l1b_workflow.cwl
-    run: rebinning-app-package-proxy/rebinning-workflow.cwl
+    #run: rebinning-app-package/rebinning.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmcduffie%2Fchirp-rebinning-app-package/versions/5/PLAIN-CWL/descriptor/%2Fworkflow.cwl
     in:
-      parameters:
+      # input configuration for stage-in
+      # edl_password_type can be either 'BASE64' or 'PARAM_STORE' or 'PLAIN'
+      # README available at https://github.com/unity-sds/unity-data-services/blob/main/docker/Readme.md
+      stage_in:
         source: [cmr-step/results]
         valueFrom: |
           ${
               return {
-                input_filename: {s3_url: self['location']},
-                line_offset: 0,
+                download_type: 'DAAC',
+                stac_json: self,
+                edl_password: '/sps/processing/workflows/edl_password',
+                edl_username: '/sps/processing/workflows/edl_username',
+                edl_password_type: 'PARAM_STORE'
               };
           }
-      stage_out:
-        source: [output_data_bucket, output_collection_id ]
+      #input configuration for process
+      parameters:
+        source: [output_collection_id]
         valueFrom: |
           ${
               return {
-                s3_url: self[0] + "/" + self[1]
+                output_collection: self
               };
           }
-    out: [results]
+      #input configuration for stage-out
+      # readme available at https://github.com/unity-sds/unity-data-services/blob/main/docker/Readme.md
+      stage_out:
+        source: [output_data_bucket, output_collection_id]
+        valueFrom: |
+          ${
+              return {
+                aws_access_key_id: '',
+                aws_region: 'us-west-2',
+                aws_secret_access_key: '',
+                aws_session_token: '',
+                collection_id: self[1],
+                staging_bucket: self[0]
+              };
+          }
+    out: [stage_out_results]
   data-catalog:
-    run: catalog/catalog-workflow.cwl
+    #run: catalog/catalog.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/2/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
-      uds_collection: output_collection_id
-      stac: chirp-rebinning/results
+      unity_username:
+        valueFrom: "/sps/processing/workflows/unity_username"
+      unity_password:
+        valueFrom: "/sps/processing/workflows/unity_password"
+      password_type:
+        valueFrom: "PARAM_STORE"
+      unity_client_id:
+        valueFrom: "71g0c73jl77gsqhtlfg2ht388c"
+      unity_dapa_api:
+        valueFrom: "https://1gp9st60gd.execute-api.us-west-2.amazonaws.com/dev/"
+      uploaded_files_json: chirp-rebinning/stage_out_results
     out: [results]
-  #
-  # daac-notification:
-  #   run: daac_notify.cwl
-  #   in:
-  #     daac_collection: input_daac_collection_shortname
-  #     daac_sns: input_daac_collection_sns
-  #     data: unity-data-upload/output-stac
-  #   out: []
+
