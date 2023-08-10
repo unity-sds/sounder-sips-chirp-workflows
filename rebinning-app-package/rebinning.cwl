@@ -24,6 +24,7 @@ $graph:
             - string
             - 'null'
             stac_json: File
+            edl_password_type: string
           type: record
       stage_out:
         type:
@@ -48,7 +49,7 @@ $graph:
             - 'null'
           type: record
     outputs:
-      results:
+      stage_out_results:
         type: File
         outputSource: stage_out/stage_out_results
 
@@ -142,7 +143,7 @@ $graph:
         type: File
     requirements:
       DockerRequirement:
-        dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.0
+        dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.2
       EnvVarRequirement:
         envDef:
           AWS_ACCESS_KEY_ID: $(inputs.aws_access_key_id)
@@ -173,7 +174,7 @@ $graph:
       stac_json:
         type: File
       edl_password_type:
-        default: BASE64
+        default: PARAM_STORE 
         type: string
     outputs:
       stage_in_collection_file:
@@ -236,7 +237,7 @@ $graph:
         type: File
     requirements:
       DockerRequirement:
-        dockerPull: mcduffie/chirp-rebinning-app-package:e8261af4
+        dockerPull: gangl/chirp-rebinning-app-package:cdd06646
       InitialWorkDirRequirement:
         listing:
         - entry: $(inputs)
