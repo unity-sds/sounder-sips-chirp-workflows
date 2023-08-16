@@ -7,7 +7,7 @@ stdout: catalog-results.json
 
 requirements:
   DockerRequirement:
-    dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.1
+    dockerPull: ghcr.io/unity-sds/unity-data-services:5.3.1
   EnvVarRequirement:
     envDef:
       USERNAME: $(inputs.unity_username)
@@ -21,6 +21,8 @@ requirements:
       PROVIDER_ID: 'SNPP'
       GRANULES_CATALOG_TYPE: 'UNITY'
       UPLOADED_FILES_JSON: $(inputs.uploaded_files_json.path)
+
+      CHUNK_SIZE: '200'
 
 inputs:
   unity_username:
