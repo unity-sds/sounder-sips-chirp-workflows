@@ -44,7 +44,7 @@ outputs:
 
 steps:
   cmr-step:
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcmr-trial/versions/1/PLAIN-CWL/descriptor/%2FDockstore.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcmr-trial/versions/2/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
       cmr_collection : input_cmr_collection_name
       cmr_start_time: input_cmr_search_start_time
@@ -54,7 +54,7 @@ steps:
       # cmr_edl_pass: "null"
     out: [results]
   chirp-rebinning:
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fchirp-rebinning-app-package/versions/4/PLAIN-CWL/descriptor/%2Fworkflow.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fchirp-rebinning-app-package/versions/5/PLAIN-CWL/descriptor/%2Fworkflow.cwl 
     #run: rebinning-app-package/rebinning.cwl
     in:
       # input configuration for stage-in
@@ -99,7 +99,7 @@ steps:
     out: [stage_out_results]
   data-catalog:
     #run: catalog/catalog.cwl
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/4/PLAIN-CWL/descriptor/%2FDockstore.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/5/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
       unity_username:
         valueFrom: "/sps/processing/workflows/unity_username"
