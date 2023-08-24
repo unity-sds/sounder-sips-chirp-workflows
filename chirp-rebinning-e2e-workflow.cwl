@@ -54,7 +54,7 @@ steps:
       # cmr_edl_pass: "null"
     out: [results]
   chirp-rebinning:
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fchirp-rebinning-app-package/versions/5/PLAIN-CWL/descriptor/%2Fworkflow.cwl 
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fchirp-rebinning-app-package/versions/7/PLAIN-CWL/descriptor/%2Fworkflow.cwl 
     #run: rebinning-app-package/rebinning.cwl
     in:
       # input configuration for stage-in
