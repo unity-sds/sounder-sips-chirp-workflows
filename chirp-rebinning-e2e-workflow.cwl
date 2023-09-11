@@ -54,7 +54,7 @@ steps:
       # cmr_edl_pass: "null"
     out: [results]
   chirp-rebinning:
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fchirp-rebinning-app-package/versions/8/PLAIN-CWL/descriptor/%2Fworkflow.cwl 
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fchirp-rebinning-app-package/versions/12/PLAIN-CWL/descriptor/%2Fworkflow.cwl
     #run: rebinning-app-package/rebinning.cwl
     in:
       # input configuration for stage-in
@@ -69,7 +69,8 @@ steps:
                 stac_json: self,
                 edl_password: '/sps/processing/workflows/edl_password',
                 edl_username: '/sps/processing/workflows/edl_username',
-                edl_password_type: 'PARAM_STORE'
+                edl_password_type: 'PARAM_STORE',
+                log_level: '20'
               };
           }
       #input configuration for process
@@ -78,6 +79,7 @@ steps:
         valueFrom: |
           ${
               return {
+                batch_size: 100,
                 output_collection: self
               };
           }
@@ -93,13 +95,14 @@ steps:
                 aws_secret_access_key: '',
                 aws_session_token: '',
                 collection_id: self[1],
-                staging_bucket: self[0]
+                staging_bucket: self[0],
+                log_level: '20'
               };
           }
     out: [stage_out_results]
   data-catalog:
     #run: catalog/catalog.cwl
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/5/PLAIN-CWL/descriptor/%2FDockstore.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/7/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
       unity_username:
         valueFrom: "/sps/processing/workflows/unity_username"
@@ -113,4 +116,3 @@ steps:
         valueFrom: "https://1gp9st60gd.execute-api.us-west-2.amazonaws.com/dev/"
       uploaded_files_json: chirp-rebinning/stage_out_results
     out: [results]
-
