@@ -113,6 +113,6 @@ steps:
       unity_client_id:
         valueFrom: "71894molftjtie4dvvkbjeard0"
       unity_dapa_api:
-        valueFrom: "https://58nbcawrvb.execute-api.us-west-2.amazonaws.com/test/"
+        valueFrom: "https://dxebrgu0bc9w7.cloudfront.net/"
       uploaded_files_json: chirp-rebinning/stage_out_results
     out: [results]
