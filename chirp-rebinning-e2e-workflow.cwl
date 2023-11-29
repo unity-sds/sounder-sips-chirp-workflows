@@ -31,6 +31,8 @@ inputs:
   # For unity data upload step, unity catalog
   output_collection_id: string
   output_data_bucket: string
+  input_unity_client_id: string
+  input_unity_dapa_api: string
 
   # For DAAC CNM step
   input_daac_collection_shortname: string
@@ -110,9 +112,7 @@ steps:
         valueFrom: "/sps/processing/workflows/unity_password"
       password_type:
         valueFrom: "PARAM_STORE"
-      unity_client_id:
-        valueFrom: "71g0c73jl77gsqhtlfg2ht388c"
-      unity_dapa_api:
-        valueFrom: "https://1gp9st60gd.execute-api.us-west-2.amazonaws.com/dev/"
+      unity_client_id: input_unity_client_id
+      unity_dapa_api: input_unity_dapa_api
       uploaded_files_json: chirp-rebinning/stage_out_results
     out: [results]
