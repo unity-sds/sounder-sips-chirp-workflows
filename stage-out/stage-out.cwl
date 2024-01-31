@@ -7,11 +7,13 @@ stdout: stage-out-results.json
 
 requirements:
   DockerRequirement:
-    dockerPull: ghcr.io/unity-sds/unity-data-services:5.2.2
+    dockerPull: ghcr.io/unity-sds/unity-data-services:6.3.0
   InitialWorkDirRequirement:
     listing:
     - entry: $(inputs.sample_output_data)
       entryname: /tmp/outputs
+      writable: true
+
   EnvVarRequirement:
     envDef:
       AWS_REGION: $(inputs.aws_region)
@@ -23,6 +25,8 @@ requirements:
       STAGING_BUCKET: $(inputs.staging_bucket)
       CATALOG_FILE: $(inputs.catalog_file.path)
       OUTPUT_FILE: '$(runtime.outdir)/stage-out-results.json'
+      LOG_LEVEL: '10'
+      PARALLEL_COUNT: '2'
 
 inputs:
   aws_region:
