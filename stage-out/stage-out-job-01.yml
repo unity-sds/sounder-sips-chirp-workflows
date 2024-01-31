@@ -1,8 +1,8 @@
 aws_access_key_id: ""
 aws_secret_access_key: ""
 aws_session_token: ""
-collection_id: "urn:nasa:unity:uds_local_test:DEV1:CHRP_16_DAY_REBIN___1"
-staging_bucket: "uds-dev-cumulus-sps"
+collection_id: "urn:nasa:unity:uds_local_test:DEV1:CHRP_16_DAY_REBIN___4"
+staging_bucket: "sps-dev-ds-storage"
 catalog_file:
   class: File
   path: outputs/catalog.json
