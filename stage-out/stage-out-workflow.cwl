@@ -24,6 +24,12 @@ outputs:
   stage_out_results:
     type: File
     outputSource: stage-out/stage_out_results
+  successful_features:
+    type: File
+    outputSource: stage-out/successful_features
+  failed_features:
+    type: File
+    outputSource: stage-out/failed_features
 
 steps:
     stage-out:
@@ -36,4 +42,4 @@ steps:
         staging_bucket: staging_bucket
         catalog_file: catalog_file
         sample_output_data: sample_output_data
-      out: [stage_out_results]
+      out: [stage_out_results, successful_features, failed_features]
