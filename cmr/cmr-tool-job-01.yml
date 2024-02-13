@@ -1,8 +1,0 @@
-input_processing_labels: ["lable1","label2"]
-
-# For CMR Search Step
-cmr_collection: "C2011289787-GES_DISC"
-cmr_start_time: "2021-02-01T00:00:00Z"
-cmr_stop_time: "2021-02-02T00:00:00Z"
-limits: "10"
-#cmr_edl_user: None

@@ -1,7 +1,0 @@
-download_dir: "granules"
-download_type: "DAAC"
-edl_username: "base64encodedusername"
-edl_password: "base64encodedpassword"
-stac_json:
-  class: File
-  path: ../cmr/cmr-results.json

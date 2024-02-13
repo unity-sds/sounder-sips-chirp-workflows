@@ -1,9 +1,0 @@
-input_processing_labels: ["lable1","label2"]
-
-unity_username: "base64encodedusername"
-unity_password: "base64encodedpassword"
-unity_client_id: "71g0c73jl77gsqhtlfg2ht388c"
-unity_dapa_api: "https://1gp9st60gd.execute-api.us-west-2.amazonaws.com/dev/"
-uploaded_files_json:
-  class: File
-  path: uploaded-files.json

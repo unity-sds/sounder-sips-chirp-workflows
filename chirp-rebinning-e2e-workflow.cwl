@@ -32,6 +32,11 @@ inputs:
   output_collection_id: string
   output_data_bucket: string
 
+  # catalog inputs
+  input_unity_dapa_api: string
+  input_unity_dapa_client: string
+
+
   # For DAAC CNM step
   input_daac_collection_shortname: string
   input_daac_collection_sns: string
@@ -44,7 +49,7 @@ outputs:
 
 steps:
   cmr-step:
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcmr-trial/versions/2/PLAIN-CWL/descriptor/%2FDockstore.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcmr-trial/versions/4/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
       cmr_collection : input_cmr_collection_name
       cmr_start_time: input_cmr_search_start_time
@@ -54,7 +59,7 @@ steps:
       # cmr_edl_pass: "null"
     out: [results]
   chirp-rebinning:
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fchirp-rebinning-app-package/versions/12/PLAIN-CWL/descriptor/%2Fworkflow.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fchirp-rebinning-app-package/versions/13/PLAIN-CWL/descriptor/%2Fworkflow.cwl
     #run: rebinning-app-package/rebinning.cwl
     in:
       # input configuration for stage-in
@@ -70,7 +75,9 @@ steps:
                 edl_password: '/sps/processing/workflows/edl_password',
                 edl_username: '/sps/processing/workflows/edl_username',
                 edl_password_type: 'PARAM_STORE',
-                log_level: '20'
+                log_level: '20',
+                downloading_roles: '',
+                downloading_keys: 'data, metadata'
               };
           }
       #input configuration for process
@@ -99,10 +106,10 @@ steps:
                 log_level: '20'
               };
           }
-    out: [stage_out_results]
+    out: [stage_out_results, stage_out_success, stage_out_failures]
   data-catalog:
     #run: catalog/catalog.cwl
-    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/7/PLAIN-CWL/descriptor/%2FDockstore.cwl
+    run: http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Fcatalog-trial/versions/13/PLAIN-CWL/descriptor/%2FDockstore.cwl
     in:
       unity_username:
         valueFrom: "/sps/processing/workflows/unity_username"
@@ -110,9 +117,7 @@ steps:
         valueFrom: "/sps/processing/workflows/unity_password"
       password_type:
         valueFrom: "PARAM_STORE"
-      unity_client_id:
-        valueFrom: "71g0c73jl77gsqhtlfg2ht388c"
-      unity_dapa_api:
-        valueFrom: "https://1gp9st60gd.execute-api.us-west-2.amazonaws.com/dev/"
-      uploaded_files_json: chirp-rebinning/stage_out_results
+      unity_client_id: input_unity_dapa_client
+      unity_dapa_api: input_unity_dapa_api
+      uploaded_files_json: chirp-rebinning/stage_out_success
     out: [results]
